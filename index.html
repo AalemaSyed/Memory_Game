@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+
+        <div class="game-info">
+            <h1 class="title">🧠 Memory Match Game</h1>
+
+          <p id="moveCounter">Moves: 0</p>
+          <p id="timer">Time: <span id="timeDisplay">0s</span></p>
+          <!-- Inside your game-info panel -->
+    
+            <div class="buttons">
+                <button id="startBtn" class="btn green">Start Game</button>
+                <button id="restartBtn" class="btn green" style="display: none;">Restart Game</button>
+            </div>
+  
+        </div>
+      
+        <div id="gameBoard" class="game-board">
+          <!-- Cards will go here -->
+        </div>
+      </div>
+      
+  
+    <script src="scripts.js"></script>
+    
+</body>
+</html>
