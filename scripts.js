@@ -1,3 +1,10 @@
+
+// sounds
+const flipSound = new Audio('sounds/flip.mp3');
+const matchSound = new Audio('sounds/match.mp3');
+const mismatchSound = new Audio('sounds/mismatch.mp3');
+const winSound = new Audio('sounds/win.mp3');
+
 // for move count
 let moves = 0;
 const moveCounter = document.getElementById("moveCounter");
@@ -82,6 +89,8 @@ function handleCardClick(card) {
   }
 
   card.classList.add('flipped');
+  flipSound.currentTime = 0;
+  flipSound.play();
   flippedCards.push(card);
 
   if (flippedCards.length === 2) {
@@ -99,10 +108,14 @@ function checkMatch() {
   if (name1 === name2) {
     card1.classList.add('matched');
     card2.classList.add('matched');
+    matchSound.currentTime = 0;
+    matchSound.play();
     flippedCards = [];
     checkWin();
   } else {
     lockBoard = true;
+    mismatchSound.currentTime = 0;
+    mismatchSound.play();
     setTimeout(() => {
       card1.classList.remove('flipped');
       card2.classList.remove('flipped');
@@ -117,6 +130,8 @@ function checkWin() {
   if (matchedCards.length === cardsArray.length) {
 
     clearInterval(timerInterval); //stops the timer here
+    winSound.currentTime = 0;
+    winSound.play();
     setTimeout(() => {
       alert('You matched all the animals!');
     }, 500);

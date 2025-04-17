@@ -1,4 +1,175 @@
-body{
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 0;
+  color: #333;
+}
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;  /* Ensures space between items */
+  gap: 20px; /* Reduce this for tighter spacing */
+  min-height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Ensure game-info and game-board are side by side */
+@media (min-width: 768px) {
+  .game-container {
+      flex-direction: row;  /* Side by side on larger screens */
+  }
+
+  .game-info {
+      flex: 0 0 30%;  /* Takes 30% width of the container */
+  }
+
+  .game-board {
+      flex: 0 0 65%;  /* Takes 65% width of the container */
+  }
+}
+
+/* Styling for game-info section */
+.game-info {
+  background-color: #eaf4fc;
+  padding: 30px;
+  height: 13rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Game board grid layout */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px); /* 4 columns */
+  gap: 20px;
+  justify-content: center;
+  flex: 1;
+}
+
+/* Styling for buttons */
+.buttons {
+  margin-top: 20px;
+}
+
+.btn.green {
+  background-color: green;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#restartBtn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn.green:hover {
+  background-color: #218838;
+}
+
+.card {
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-front {
+  background-color: #dfe6e9;
+}
+
+.card-back {
+  background-color: #74b9ff;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  user-select: none;
+}
+
+.card.matched .card-inner {
+  box-shadow: 0 0 10px 3px #3c9785;
+}
+
+.card-front {
+  font-size: 40px;
+}
+
+/* Mobile phones - Small (max 480px) */
+@media (max-width: 480px) {
+.game-board {
+  grid-template-columns: repeat(3, 80px); /* Change from 2 to 3 */
+  gap: 10px;
+}
+}
+
+/* Tablets or medium phones (max 768px) */
+@media (max-width: 768px) {
+.game-board {
+  grid-template-columns: repeat(4, 80px); /* More cards per row */
+  gap: 12px;
+}
+
+.game-container {
+  flex-direction: column;
+  gap: 20px;
+}
+}
+
+
+
+/* body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f0f4f8;
     margin: 0;
@@ -12,9 +183,11 @@ body{
 }
 .game-container {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Reduce this for tighter spacing */
+    gap: 20px; 
     min-height: 100vh;
     padding: 10px;
     box-sizing: border-box;
@@ -27,6 +200,16 @@ body{
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
+
+  .game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px); 
+    gap: 20px;
+    justify-content: center;
+    flex: 1;
+  }
+
+  
   
   .buttons {
     margin-top: 20px;
@@ -56,15 +239,6 @@ body{
   .btn.green:hover {
     background-color: #218838;
   }
-  
-  .game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px); /* 4 columns */
-    gap: 15px;
-    justify-content: center;
-    flex: 1;
-  }
-  
     
 .card {
     perspective: 1000px;
@@ -126,26 +300,33 @@ body{
 .card-front {
     font-size: 40px;
 }
-/* Responsive Tweaks */
+
+@media (max-width: 480px) {
+  .game-board {
+    grid-template-columns: repeat(3, 80px); 
+    gap: 10px;
+  }
+}
+
 @media (max-width: 768px) {
-    .game-board {
-      grid-template-columns: repeat(3, 80px); /* 3 columns for tablet */
-    }
-    .game-container {
-        flex-direction: column;
-        gap: 20px;
-      }
+  .game-board {
+    grid-template-columns: repeat(4, 80px); 
+    gap: 12px;
   }
-  
-  @media (max-width: 480px) {
-    .game-board {
-      grid-template-columns: repeat(2, 80px); /* 2 columns for mobile */
-      gap: 10px;
-    }
-  
-    #restartBtn {
-      width: 100%;
-    }
+  .game-container {
+    flex-direction: column;
+    gap: 20px;
   }
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  gap: 15px;
+  justify-content: center;
+}
 
 
+ 
+
+ */
